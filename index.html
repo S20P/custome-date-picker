@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<title>Datepicker</title>
+	<link href="css/normalize.css" rel="stylesheet" type="text/css"/>
+	<link href="css/datepicker.css" rel="stylesheet" type="text/css"/>	
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+	<script type="text/javascript">
+
+	var array = ["2018-05-14","2018-05-15","2018-05-01","2018-05-18",];
+
+
+		$(function(){
+			$('#datepicker').datepicker({
+				inline: true,
+				//nextText: '&rarr;',
+				//prevText: '&larr;',
+				showOtherMonths: true,
+				//dateFormat: 'dd MM yy',
+				dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+				//showOn: "button",
+				//buttonImage: "img/calendar-blue.png",
+				//buttonImageOnly: true,
+				beforeShowDay: function(date){
+					var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+					var newdate = string;
+					var tooltip_text = "New event on " + newdate;
+							if(array.indexOf(string) != -1){
+								return  [true, "highlight", tooltip_text ];
+							}
+							return [true];
+					}      
+		});
+
+			
+      $( "#datepicker" ).datepicker({ dateFormat: "yy-mm-dd" });
+      $("#datepicker").on("change",function(){
+          var selected = $(this).val();
+          alert(selected);
+      });
+
+  
+		});
+	</script>
+</head>
+<head>
+</head>
+<body>
+	<div id="datepicker"></div>
+</body>
+</html>
